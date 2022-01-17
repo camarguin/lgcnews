@@ -13,9 +13,9 @@ export default NextAuth({
       scope: 'read:user'
     }),
   ],
-  jwt: {
-    signingKey: process.env.SIGNING_KEY,
-  },
+  // jwt: {
+  //   signingKey: process.env.SIGNING_KEY,
+  // },
   callbacks: {
     async session(session) {
       try {
@@ -41,7 +41,6 @@ export default NextAuth({
             ])
           )
         )
-
         return {
           ...session,
           activeSubscription: userActiveSubscription
@@ -49,8 +48,9 @@ export default NextAuth({
       } catch {
         return {
           ...session,
-          activeSubscription: null,
+          activeSubscription: null
         }
+
       }
     },
     async signIn(user, account, profile) {
